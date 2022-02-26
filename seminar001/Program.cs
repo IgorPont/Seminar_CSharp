@@ -23,7 +23,6 @@ else
 {
    Console.WriteLine("Первое число не является квадратом второго числа");
 }
-*/
 
 // example 003 days of the week
 
@@ -79,4 +78,17 @@ if (numberUser <= 7 && numberUser >= 1)
 else
 {
    Console.WriteLine("There is no such day of the week ");
+}
+*/
+
+// example 004 Write a program that takes one number (N) as input and displays all integers between -N and N as output
+
+Console.Write("Enter a natural number ");
+int numberUser = Convert.ToInt32(Console.ReadLine());
+int negNumberUser = numberUser * (-1);
+
+while (negNumberUser <= numberUser)
+{
+   Console.Write(negNumberUser);
+   negNumberUser++;
 }
