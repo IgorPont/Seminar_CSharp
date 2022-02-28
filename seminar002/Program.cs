@@ -32,7 +32,6 @@ int FindMaxNum(int num) // метод
 
 int number = new Random().Next(100, 999);
 Console.WriteLine("Вот Ваше число: " + number + " вот число без второго разряда: " + FindMaxNum(number));
-*/
 
 // Задача 3. Напишите программу, которая будет принимать на вход два числа и выводить, является ли второе число кратным первому. Если второе число не кратно числу первому, то программа выводит остаток от деление.
 
@@ -53,6 +52,29 @@ int Number1 = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите второе число: ");
 int Number2 = Convert.ToInt32(Console.ReadLine());
 MultipleNumber(Number1, Number2);
+*/
 
+// Задача 4. Напишите программу, которая принимает на вход число и проверяет, кратно ли оно одновременно 7 и 23 (дополнение к задаче: пользователь должен сам вводить три числа)
 
-// Задача 4. Напишите программу, которая принимает на вход число и проверяет, кратно ли оно одновременно 7 и 23 (дополнение к задаче: пользователь должен сам вводить числа)
+void MultipleNumber(int numberUser, int numberCheck1, int numberCheck2)
+{
+   if (numberUser % numberCheck1 == 0 && numberUser % numberCheck2 == 0)
+   {
+      Console.WriteLine("Введенные Вами второе и третье числа кратны первому. ");
+   }
+   else
+   {
+      Console.WriteLine("Введенные Вами второе и третье числа не являются кратными первому. ");
+   }
+}
+
+Console.Write("Чтобы проверить одновременную кратность двух чисел, введите первое число: ");
+int NumberUser = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Введите второе число: ");
+int numberCheck1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Введите третье число: ");
+int numberCheck2 = Convert.ToInt32(Console.ReadLine());
+
+MultipleNumber(NumberUser, numberCheck1, numberCheck2);
