@@ -19,7 +19,6 @@ y = Convert.ToDouble(Console.ReadLine());
 quartNum = GetQuart(x, y);
 if (quartNum == 0) Console.WriteLine("Нельзя определить четверть ");
 else Console.WriteLine("Данная точка находится в " + quartNum + " четверти. ");
-*/
 
 // Задача 2. Написать программу, которая принимает на вход номер четверти и выводит на экран диапазон координат, доступных в этой четверти
 
@@ -52,13 +51,28 @@ void quarterNumber(int num)
 Console.Write("Чтобы узнать диапазон координат, доступных в конкретной четверти, введите номер четверти координатной плоскости: ");
 int userNumber = Convert.ToInt32(Console.ReadLine());
 quarterNumber(userNumber);
-
-
-
-
-
-
-
-
+*/
 
 // Задача 3. Написать программу, принимающую на вход координаты двух точек и определяющую расстояние между ними
+
+double pointDistance(double xANum, double yANum, double xBNum, double yBNum)
+{
+   double ACDistance = xBNum - xANum;
+   double BCDistance = yBNum - yANum;
+   double pDist = Math.Sqrt(Math.Pow(ACDistance, 2) + Math.Pow(BCDistance, 2));
+   return pDist;
+}
+
+Console.WriteLine("Введите координаты двух точек, чтобы узнать расстояние между ними в декартовой системе координат. ");
+Console.WriteLine("Координаты первой точки (xA, yA): ");
+double xA = Convert.ToInt32(Console.ReadLine());
+double yA = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Координаты второй точки (xB, yB): ");
+double xB = Convert.ToInt32(Console.ReadLine());
+double yB = Convert.ToInt32(Console.ReadLine());
+
+if (xA == 0 && yA == 0 && xB == 0 && yB == 0)
+   Console.WriteLine("Расстояние между двумя точками равно нулю. ");
+
+double result = pointDistance(xA, yA, xB, yB);
+Console.WriteLine("Расстояние между двумя точками равно: " + result);
