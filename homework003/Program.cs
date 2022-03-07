@@ -1,5 +1,5 @@
 ﻿// Задача 19. Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
-
+/*
 int InvertNumber(int number)
 {
    int n5 = number % 10;
@@ -30,3 +30,30 @@ else
 {
    Console.WriteLine("Вы ввели не пятизначное число. Попробуйте еще раз. ");
 }
+*/
+
+// Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+
+double DistancePoint(double xANum, double yANum, double zANum, double xBNum, double yBNUm, double zBNum)
+{
+   double xDistance = xBNum - xANum;
+   double yDistance = yBNUm - yANum;
+   double zDistance = zBNum - zANum;
+
+   double result = Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2) + Math.Pow(zDistance, 2));
+   return result;
+}
+
+Console.WriteLine("Введи координаты двух точек и узнаешь расстояние между ними в трехмерном пространстве. ");
+Console.WriteLine("Введи координаты первой точки в формате (Xa, Ya, Za): ");
+double XaPoint = Convert.ToInt32(Console.ReadLine());
+double YaPoint = Convert.ToInt32(Console.ReadLine());
+double ZaPoint = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введи координаты второй точки в формате (Xb, Yb, Zb): ");
+double XbPoint = Convert.ToInt32(Console.ReadLine());
+double YbPoint = Convert.ToInt32(Console.ReadLine());
+double ZbPoint = Convert.ToInt32(Console.ReadLine());
+
+double UserDistansePoint = DistancePoint(XaPoint, YaPoint, ZaPoint, XbPoint, YbPoint, ZbPoint);
+Console.WriteLine("Расстояние между двумя точками равно: " + UserDistansePoint);
