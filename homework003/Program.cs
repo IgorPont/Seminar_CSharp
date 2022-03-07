@@ -30,7 +30,6 @@ else
 {
    Console.WriteLine("Вы ввели не пятизначное число. Попробуйте еще раз. ");
 }
-*/
 
 // Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 
@@ -57,3 +56,23 @@ double ZbPoint = Convert.ToInt32(Console.ReadLine());
 
 double UserDistansePoint = DistancePoint(XaPoint, YaPoint, ZaPoint, XbPoint, YbPoint, ZbPoint);
 Console.WriteLine("Расстояние между двумя точками равно: " + UserDistansePoint);
+*/
+
+// Задача 23. Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+
+void cubeTable(double number)
+{
+   int count = 1;
+   while (count <= number)
+   {
+      double newNumber = Math.Pow(count, 3);
+      Console.Write(newNumber + ", ");
+      count++;
+   }
+
+}
+
+Console.Write("Введите число, чтобы получить результ вовзведения в тертью степень чисел от 1 до введенного числа: ");
+int userNumber = Convert.ToInt32(Console.ReadLine());
+Console.Write("Таблица кубов от 1 " + "до " + userNumber + ": ");
+cubeTable(userNumber);
