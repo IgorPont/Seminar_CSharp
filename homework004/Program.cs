@@ -35,8 +35,6 @@ Console.WriteLine();
 
 int SumNumberNum(int num) // все варианты чисел для ввода учтены (0, n, -n)
 {
-   //if (num != 0)
-   //{
    num = Math.Abs(num);
    int count = 0;
    int newNum = num;
@@ -54,8 +52,6 @@ int SumNumberNum(int num) // все варианты чисел для ввод�
       result += (num % remDiv) / (remDiv / 10);
    }
    return result;
-   //}
-   //else return 0;
 }
 
 Console.Write("Enter a number and get the sum of digits of that number: ");
@@ -64,16 +60,32 @@ Console.WriteLine();
 Console.WriteLine($"The sum of digits in the entered number is {SumNumberNum(numberUser)}. ");
 Console.WriteLine();
 
-// Решение второй задачи через строку.
 
-int SumNumberNum(string num) // есть баг: на отрицательное число выдает ошибку, но можно решить, если поставить проверку на отрицательное число и просто отсекать нулевой символ
+// Решение второй задачи через строку (тренируюсь). // все варианты чисел для ввода учтены (0, n, -n)
+
+int SumNumberNum(string num)
 {
-   int result = 0;
-   for (int i = 0; i < num.Length; i++)
+   int numCheckNeg = Int32.Parse(num);
+   if (numCheckNeg >= 0)
    {
-      result += int.Parse(num[i].ToString());
+      num = numCheckNeg.ToString();
+      int result = 0;
+      for (int i = 0; i < num.Length; i++)
+      {
+         result += int.Parse(num[i].ToString());
+      }
+      return result;
    }
-   return result;
+   else
+   {
+      num = numCheckNeg.ToString();
+      int result = 0;
+      for (int i = 1; i < num.Length; i++)
+      {
+         result += int.Parse(num[i].ToString());
+      }
+      return result;
+   }
 }
 
 Console.Write("Enter a number and get the sum of digits of that number: ");
@@ -93,12 +105,16 @@ int[] ArrayFill(int[] array)
    return array;
 }
 
-void PrintArray(int[] array) // изменить вывод на формат [ 1, 2, 3 ]
+void PrintArray(int[] array)
 {
+   Console.Write($"[ ");
    for (int p = 0; p < array.Length; p++)
    {
-      Console.Write($"{array[p]} ");
+      Console.Write($"{array[p]}");
+      if (p == array.Length - 1) break;
+      Console.Write($", ");
    }
+   Console.Write($" ]");
 }
 
 Console.Write($"Enter the number of elements you want to fill the array: ");
@@ -110,6 +126,8 @@ if (numUser > 0)
    Console.WriteLine();
    Console.WriteLine($"You entered an array with the following elements: ");
    PrintArray(newArray);
+   Console.WriteLine();
 }
-else Console.WriteLine($"You entered a number that is not a natural number. Try again. ");
+else Console.WriteLine($"The number of elements in the array must be at least one. Enter a natural number. Try again. ");
+Console.WriteLine();
 
