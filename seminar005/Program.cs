@@ -77,13 +77,15 @@ void PrintNumberRangeCheck(int[] array) // диапазон 10...99
 int[] MirrProdTwoArrEl(int[] array)
 {
    int arrLeng = 0;
-   if (array.Length % 2 == 0) arrLeng = array.Length / 2;
+   if (array.Length % 2 == 0)
+      arrLeng = array.Length / 2;
    else arrLeng = (array.Length / 2) + 1;
 
    int[] newArray = new int[arrLeng];
    for (int i = 0; i < newArray.Length; i++)
       newArray[i] = array[i] * array[array.Length - 1 - i];
-   newArray[newArray.Length - 1] = array[(array.Length - 1) / 2];
+   if (array.Length % 2 != 0)
+      newArray[newArray.Length - 1] = array[(array.Length - 1) / 2];
    return newArray;
 }
 
