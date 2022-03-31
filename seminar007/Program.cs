@@ -1,4 +1,4 @@
-﻿// по всем задачам создать только войдовские методы, решающие эту задачу, вводить и выводить данные не нужно (остановился на 29:28)
+﻿// по всем задачам создать только войдовские методы, решающие эту задачу, вводить и выводить данные не нужно 
 
 // ==== Задача 1. Задайте двумерный массив размером m×n, заполненный случайными двухзначными целыми числами.
 
@@ -9,7 +9,7 @@ void FillRandomArray(int row, int columns)
    {
       for (int j = 0; j < array.GetLength(1); j++)
       {
-         array[i, j] = new Random().Next(10, 100);
+         array[i, j] = new Random().Next(-99, 100);
          Console.Write($"{array[i, j]} ");
       }
       Console.WriteLine();
@@ -25,7 +25,7 @@ void FillElementProductArray(int row, int columns)
    {
       for (int j = 0; j < array.GetLength(1); j++)
       {
-         array[i, j] = i * j;
+         array[i, j] = i + j;
          Console.Write($"{array[i, j]} ");
       }
       Console.WriteLine();
@@ -41,17 +41,7 @@ void SqrEvenIndexArray(int row, int columns)
    {
       for (int j = 0; j < array.GetLength(1); j++)
       {
-         array[i, j] = new Random().Next(1, 10);
-         Console.Write($"{array[i, j]} ");
-      }
-      Console.WriteLine();
-   }
-   Console.WriteLine("*****");
-
-   for (int i = 0; i < array.GetLength(0); i++)
-   {
-      for (int j = 0; j < array.GetLength(1); j++)
-      {
+         array[i, j] = new Random().Next(-99, 100);
          if (i % 2 == 0 && j % 2 == 0)
             array[i, j] = array[i, j] * array[i, j];
          Console.Write($"{array[i, j]} ");
@@ -65,25 +55,19 @@ void SqrEvenIndexArray(int row, int columns)
 void SumDiagonalIndexArray(int row, int columns)
 {
    int[,] array = new int[row, columns];
+   int sum = 0;
    for (int i = 0; i < array.GetLength(0); i++)
    {
       for (int j = 0; j < array.GetLength(1); j++)
       {
          array[i, j] = new Random().Next(1, 10);
          Console.Write($"{array[i, j]} ");
-      }
-      Console.WriteLine();
-   }
-   Console.WriteLine("*****");
-
-   int sum = 0;
-   for (int i = 0; i < array.GetLength(0); i++)
-   {
-      for (int j = 0; j < array.GetLength(1); j++)
-      {
          if (i == j)
             sum += array[i, j];
       }
+      Console.WriteLine();
    }
    Console.WriteLine(sum);
 }
+
+SumDiagonalIndexArray(4, 4);
