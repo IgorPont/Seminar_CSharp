@@ -114,7 +114,7 @@ int[,] SortElementRowArray(int[,] array)
       {
          for (int m = j + 1; m < array.GetLength(1); m++)
          {
-            if (array[i, j] > array[i, m])
+            if (array[i, j] < array[i, m])
             {
                temp = array[i, j];
                array[i, j] = array[i, m];
@@ -223,9 +223,9 @@ int[,] FillSpiralArray()
 
 // ==== Задача 1: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 
-// int[,] userArray = CreateFillRandomArray();
-// PrintArray(userArray);
-// PrintArray(SortElementRowArray(userArray));
+int[,] userArray = CreateFillRandomArray();
+PrintArray(userArray);
+PrintArray(SortElementRowArray(userArray));
 
 
 // ==== Задача 2: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
@@ -244,4 +244,4 @@ int[,] FillSpiralArray()
 // На выходе получается вот такой массив:
 
 
-PrintArray(FillSpiralArray()); // заполняет спирально массив любого размера, как квадратный, так и прямоугольный
+// PrintArray(FillSpiralArray()); // заполняет спирально массив любого размера, как квадратный, так и прямоугольный
