@@ -29,7 +29,7 @@
 // PrintWords("abc", 3, "");
 
 
-// ==== Задача 3. Задача: Заданы 2 массива: info и data. В массиве info хранятся двоичные представления нескольких чисел (без разделителя). В массиве data хранится информация о количестве бит, которые занимают числа из массива info. Напишите программу, которая составит массив десятичных представлений чисел массива data с учётом информации из массива info.
+// ==== Задача 3. Задача: Заданы 2 массива: info и data. В массиве data хранятся двоичные представления нескольких чисел (без разделителя). В массиве info хранится информация о количестве бит, которые занимают числа из массива data. Напишите программу, которая составит массив десятичных представлений чисел массива data с учётом информации из массива info.
 // Комментарий: первое число занимает 2 бита (01 -> 1); второе число занимает 3 бита (111 -> 7); третье число занимает 3 бита (000 -> 0; четвёртое число занимает 1 бит (1 -> 1)
 // Пример:
 // входные данные:
@@ -39,7 +39,7 @@
 // 1, 7, 0, 1
 
 
-int[] ConvertBinaryDecimal(int[] arrayData, int[] arrayInfo)
+int[] ConvertBinaryDecimal(int[] arrayData, int[] arrayInfo) // метод переводит десятичные представления чисел массива data с учётом информации из массива info
 {
    int indexArrayInfo = 0;
    int indexArrayData = 0;
@@ -64,7 +64,110 @@ int[] ConvertBinaryDecimal(int[] arrayData, int[] arrayInfo)
    return result;
 }
 
-void PrintArray(int[] array)
+int CheckBinaryNum(int number) // метод проверят значения, которые вводит пользователь, являются ли они двоичными, если нет, то запрашивает снова
+{
+   while (number < -1 || number > 1)
+   {
+      Console.WriteLine($"You entered a number in a non-binary representation. \nEnter 0 or 1: ");
+      number = Convert.ToInt32(Console.ReadLine());
+   }
+   return number;
+}
+
+int[] FillArrayBinaryNum() // метод заполняет массив data двоичными числами
+{
+   int item = 1;
+   int[] binaryArray = new int[item];
+
+   Console.WriteLine($"Enter binary representations of numbers using 0 or 1. \nType -1 to end the input. ");
+   int numUser = CheckBinaryNum(Convert.ToInt32(Console.ReadLine()));
+   if (numUser == -1)
+   {
+      Console.WriteLine($"You didn't enter any numbers. Try again. ");
+      numUser = CheckBinaryNum(Convert.ToInt32(Console.ReadLine()));
+   }
+
+   while (numUser != -1)
+   {
+      binaryArray[item - 1] = numUser;
+      numUser = CheckBinaryNum(Convert.ToInt32(Console.ReadLine()));
+      if (numUser == -1) break;
+      Array.Resize(ref binaryArray, binaryArray.Length + 1);
+      item++;
+   }
+   return binaryArray;
+}
+
+int CheckNaturalNum(int number) // метод проверяет числа, которые пользователь вводит, заполняя массим info, на натуральные
+{
+   while (number <= 0 && number != -1)
+   {
+      Console.WriteLine($"Enter a natural number. ");
+      number = Convert.ToInt32(Console.ReadLine());
+   }
+   return number;
+}
+
+int[] FillArrayBitsNum() // метод заполняет массив info натуральными числами
+{
+   int item = 1;
+   int[] bitsArray = new int[item];
+
+   Console.WriteLine($"Enter the numbers corresponding to the number of bits that binary numbers occupy. \nType -1 to end the input. ");
+   int numUser = CheckNaturalNum(Convert.ToInt32(Console.ReadLine()));
+   if (numUser == -1)
+   {
+      Console.WriteLine($"You didn't enter any numbers. Try again. ");
+      numUser = CheckNaturalNum(Convert.ToInt32(Console.ReadLine()));
+   }
+
+   while (numUser != -1)
+   {
+      bitsArray[item - 1] = numUser;
+      numUser = CheckNaturalNum(Convert.ToInt32(Console.ReadLine()));
+      if (numUser == -1) break;
+      Array.Resize(ref bitsArray, bitsArray.Length + 1);
+      item++;
+   }
+   return bitsArray;
+}
+
+int[] DiffBinBitsArray(int[] binArr, int[] bitsArr) // метод увеличивает массив data, если пользователь ввел больше значений в массив info
+{
+   int sumBitItem = 0;
+   for (int i = 0; i < bitsArr.Length; i++)
+   {
+      sumBitItem += bitsArr[i];
+   }
+
+   if (binArr.Length < sumBitItem)
+   {
+      int diffBinBits = sumBitItem - binArr.Length;
+      Array.Resize(ref binArr, binArr.Length + diffBinBits);
+      return binArr;
+   }
+   else return binArr;
+}
+
+int[] CheckBitsArray(int[] binArr, int[] bitsArr) // метод увеличивает массив info, если пользователь ввел больше значений в массив data 
+{
+   int sumBitItem = 0;
+   for (int i = 0; i < bitsArr.Length; i++)
+   {
+      sumBitItem += bitsArr[i];
+   }
+
+   if (binArr.Length > sumBitItem)
+   {
+      int diffBinBits = binArr.Length - sumBitItem;
+      Array.Resize(ref bitsArr, bitsArr.Length + 1);
+      bitsArr[bitsArr.Length - 1] = diffBinBits;
+      return bitsArr;
+   }
+   else return bitsArr;
+}
+
+void PrintArray(int[] array) // метод выводит эелементы массива в консоле
 {
    Console.Write($"[ ");
    for (int i = 0; i < array.Length; i++)
@@ -77,7 +180,20 @@ void PrintArray(int[] array)
    Console.WriteLine();
 }
 
-int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1 };
-int[] info = { 2, 3, 3, 1 };
+
+// решение с фиксированными значениями data и info из примера к задаче
+
+// int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1 };
+// int[] info = { 2, 3, 3, 1 };
+// PrintArray(ConvertBinaryDecimal(data, info));
+
+// решение, когда пользователь сам вводит элементы data и info
+
+int[] data = FillArrayBinaryNum();
+int[] info = FillArrayBitsNum();
+data = DiffBinBitsArray(data, info);
+info = CheckBitsArray(data, info);
+
 PrintArray(ConvertBinaryDecimal(data, info));
+
 
